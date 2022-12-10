@@ -10,7 +10,8 @@ var companyRoutter = require('./routes/company')
 var staffRoutter = require('./routes/staff')
 
 var app = express();
-mongoose.connect('mongodb+srv://sumeth:0U4awnrAu1qCy1a2@1913210264-touch.wy7zzms.mongodb.net/restfulapi?retryWrites=true&w=majority' , {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://sumeth:0U4awnrAu1qCy1a2@1913210264-touch.wy7zzms.mongodb.net/restfulapi?retryWrites=true&w=majority' ,
+ {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false});
 
 app.use(logger('dev'));
 app.use(express.json());
