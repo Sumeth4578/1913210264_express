@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var companyRoutter = require('./routes/company')
 var staffRoutter = require('./routes/staff')
+var shopRoutter = require('./routes/shop')
 
 var app = express();
 mongoose.connect('mongodb+srv://sumeth:0U4awnrAu1qCy1a2@1913210264-touch.wy7zzms.mongodb.net/restfulapi?retryWrites=true&w=majority' ,
@@ -23,5 +24,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/company',companyRoutter);
 app.use('/staff',staffRoutter )
+app.use('/shop',shopRoutter )
 
 module.exports = app;
