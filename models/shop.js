@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const staffSchema = new Schema(
+const shopSchema = new Schema(
   {
     name: { type: String, required: true, trim: true },
     photo: { type: String, default: "nopic.png" },
@@ -15,6 +15,6 @@ const staffSchema = new Schema(
   { collection: "shops", timestamps: true }
 );
 
-const shop = mongoose.model("Shop", staffSchema);
+const shop = mongoose.model("Shop", shopSchema);
 
 module.exports = shop;
