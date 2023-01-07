@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose')
+const config = require('./config/index')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -11,7 +12,8 @@ var staffRoutter = require('./routes/staff')
 var shopRoutter = require('./routes/shop')
 
 var app = express();
-mongoose.connect('mongodb+srv://sumeth:0U4awnrAu1qCy1a2@1913210264-touch.wy7zzms.mongodb.net/restfulapi?retryWrites=true&w=majority' ,
+
+mongoose.connect(config.MONGODB_URI,
  {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false});
 
 app.use(logger('dev'));

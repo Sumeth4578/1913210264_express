@@ -12,7 +12,7 @@ const shopSchema = new Schema(
     // createdAt: { type: Date, default: Date.now },
     // updatedAt: { type: Date, default: Date.now },
   },
-  { collection: "shops", timestamps: true ,toJSON:{virtuals:true}}
+  { collection: "shops", timestamps: true ,toJSON:{virtual:true}}
 );
 
 shopSchema.virtual("shopMenu",{
