@@ -32,7 +32,7 @@ exports.insert = async (req, res, next) => {
   let staff = new Staff({
     name: name,
     salary: salary,
-    photo: await saveImageToDisk(photo)
+    photo: photo && await saveImageToDisk(photo)
   });
   await staff.save();
 
