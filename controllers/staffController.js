@@ -102,15 +102,15 @@ exports.update = async (req, res, next) => {
     //     salary:salary
     // })
 
-    const staff = await Staff.updateOne(
+    const staff = await Staff.findOneAndUpdate(
       { _id: id },
       {
         name: name,
         salary: salary,
       }
     );
-    if (staff.nModified === 0) {
-      const error = new Error("ไม่ได้อัพเดทข้อมูล");
+    if (!staff) {
+      const error = new Error("ไม่พบผู้ใช้งาน");
       error.statusCode = 400;
       throw error;
     } else {
