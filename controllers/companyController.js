@@ -86,7 +86,7 @@ exports.update = async (req, res, next) => {
     //  })
 
     // 2
-    const company = await Company.updateOne(
+    const company = await Company.findOneAndUpdate(
       { _id: id },
       {
         name: name,
@@ -95,7 +95,7 @@ exports.update = async (req, res, next) => {
         },
       }
     );
-    if (company.nModified === 0) {
+    if (!company) {
       const error = new Error("ไม่ได้อัพเดทข้อมูล");
       error.statusCode = 400;
       throw error;
@@ -104,10 +104,6 @@ exports.update = async (req, res, next) => {
         message: "อัพเดทแล้ว",
       });
     }
-
-    res.status(200).json({
-      message: "เพิ่มข้อมูลเรียบร้อยแล้ว",
-    });
   } catch (error) {
     next(error)
   }
