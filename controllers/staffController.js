@@ -3,6 +3,7 @@ const path = require("path");
 const uuidv4 = require("uuid");
 const { promisify } = require("util");
 const writeFileAsync = promisify(fs.writeFile);
+const { validationResult } = require("express-validator");
 
 const Staff = require("../models/staff");
 const config = require("../config/index");
@@ -27,17 +28,30 @@ exports.index = async (req, res, next) => {
 };
 
 exports.insert = async (req, res, next) => {
-  const { name, salary, photo } = req.body;
-  let staff = new Staff({
-    name: name,
-    salary: salary,
-    photo: photo && (await saveImageToDisk(photo)),
-  });
-  await staff.save();
+  try {
+    const { name, salary, photo } = req.body;
 
-  res.status(200).json({
-    message: "เพิ่มข้อมูลเรียบร้อยแล้ว",
-  });
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const error = new Error("ข้อมูลที่ได้รับมาไม่ถูกต้อง");
+      error.statusCode = 422;
+      error.validation = errors.array();
+      throw error;
+    }
+
+    let staff = new Staff({
+      name: name,
+      salary: salary,
+      photo: photo && (await saveImageToDisk(photo)),
+    });
+    await staff.save();
+
+    res.status(200).json({
+      message: "เพิ่มข้อมูลเรียบร้อยแล้ว",
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 exports.show = async (req, res, next) => {

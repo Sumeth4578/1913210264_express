@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const staffController = require("../controllers/staffController");
+const { body} = require('express-validator');
 
 /* GET users listing. */
 router.get("/", staffController.index);
@@ -9,6 +10,9 @@ router.get("/:id", staffController.show);
 router.delete("/:id", staffController.destroy);
 router.put("/:id", staffController.update);
 
-router.post("/", staffController.insert);
+router.post("/",[
+    body("name").not().isEmpty().withMessage("กรุณาป้อนข้อมูล"),
+    body("salary").not().isEmpty().withMessage("กรุณาป้อนเงินเดือน").isNumeric().withMessage("กรุณาป้อนตัวเลขเงินเดือน")
+], staffController.insert);
 
 module.exports = router;
