@@ -87,7 +87,7 @@ exports.login = async (req, res, next) => {
         id: user._id,
         role: user.role,
       },
-      config.TOKEN,
+      config.KEY,
       { expiresIn: "5 days" }
     );
 
