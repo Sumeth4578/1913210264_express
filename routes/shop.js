@@ -10,8 +10,8 @@ router.get("/:id", shopController.shopMenu);
 router.post("/",[
     body("name").not().isEmpty().withMessage("กรุณาป้อนข้อมูล"),
     body("location").not().isEmpty().withMessage("กรุณาป้อนข้อมูล"),
-    body("location.lat").isNumeric().withMessage("กรุณาป้อนข้อมูล"),
-    body("location.lgn").isNumeric().withMessage("กรุณาป้อนข้อมูล")
+    body("location.lat").not().isEmpty().isNumeric().withMessage("กรุณาป้อนข้อมูล"),
+    body("location.lgn").not().isEmpty().isNumeric().withMessage("กรุณาป้อนข้อมูล")
 ], shopController.insert)
 
 
