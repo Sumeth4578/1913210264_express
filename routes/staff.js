@@ -2,9 +2,10 @@ var express = require("express");
 var router = express.Router();
 const staffController = require("../controllers/staffController");
 const { body } = require("express-validator");
+const passportJWT = require("../middleware/passportJWT")
 
 /* GET users listing. */
-router.get("/", staffController.index);
+router.get("/",[passportJWT.isLogin], staffController.index);
 
 router.get("/:id", staffController.show);
 router.delete("/:id", staffController.destroy);
