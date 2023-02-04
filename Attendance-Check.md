@@ -6,3 +6,4 @@ Sumeth Thanadilok (Touch): Chapter 5 - Advance Mongoose
 Sumeth Thanadilok (Touch): Chapter 6 - Upload File
 Sumeth Thanadilok (Touch): Chapter 7 - Upload File Base64 and Google Storage
 Sumeth Thanadilok (Touch): Chapter 8 - Login with JSON WEB TOKEN
+Sumeth Thanadilok (Touch): Chapter 9 - User Authentication
