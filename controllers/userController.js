@@ -18,6 +18,15 @@ exports.bio = (req, res, next) => {
   });
 };
 
+exports.profile = (req, res, next) => {
+  const {role,name,email} = req.user
+  res.status(200).json({
+    name: name,
+    email: email,
+    role: role,
+  });
+};
+
 exports.register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
